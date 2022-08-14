@@ -3,6 +3,7 @@ package ml.dev.kotlin.plugins
 import com.mitchellbosecke.pebble.loader.ClasspathLoader
 import io.ktor.http.*
 import io.ktor.server.application.*
+import io.ktor.server.http.content.*
 import io.ktor.server.pebble.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
@@ -11,9 +12,17 @@ import kotlinx.serialization.ExperimentalSerializationApi
 import ml.dev.kotlin.client.ApiClient
 import ml.dev.kotlin.model.*
 import ml.dev.kotlin.service.CitationService
+import java.io.File
 
 @ExperimentalSerializationApi
 fun Application.configureRouting() {
+    routing {
+        static("/") {
+            staticRootFolder = File("/")
+            file("styles.css")
+        }
+    }
+
     install(Pebble) {
         loader(ClasspathLoader().apply {
             prefix = "templates"
