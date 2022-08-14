@@ -1,0 +1,26 @@
+<html lang="en-US">
+<body>
+<h1>Hello</h1>
+<form action="/doi" method="post">
+    <label for="doi">DOI list</label>
+    <br>
+    <textarea cols="60" id="doi" name="doi" rows="5"></textarea>
+    <br>
+    <label for="style">Style</label>
+    <select id="style" name="style">
+        {% for style in styles %}
+        <option value="{{ style.name }}">{{ style.name }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <label for="locale">Locale</label>
+    <select id="locale" name="locale">
+        {% for locale in locales %}
+        <option value="{{ locale.name }}">{{ locale.name }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <input type="submit" value="Create list"/>
+</form>
+</body>
+</html>
