@@ -12,17 +12,9 @@ import kotlinx.serialization.ExperimentalSerializationApi
 import ml.dev.kotlin.client.ApiClient
 import ml.dev.kotlin.model.*
 import ml.dev.kotlin.service.CitationService
-import java.io.File
 
 @ExperimentalSerializationApi
 fun Application.configureRouting() {
-    routing {
-        static("/") {
-            staticRootFolder = File("/")
-            file("styles.css")
-        }
-    }
-
     install(Pebble) {
         loader(ClasspathLoader().apply {
             prefix = "templates"
@@ -30,6 +22,10 @@ fun Application.configureRouting() {
     }
 
     routing {
+        static {
+            resource(remotePath = "styles.css", resource = "templates/styles.css")
+        }
+
         get("/") {
             val params = mapOf(
                 "styles" to Style.AVAILABLE,

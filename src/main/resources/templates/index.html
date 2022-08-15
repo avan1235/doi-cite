@@ -1,28 +1,32 @@
 <html lang="en-US">
 <head>
-    <link href="../styles.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
 </head>
 <body>
 <h1>DOI Cite</h1>
 <form action="/doi" method="post">
-    <label for="doi">DOI list</label>
-    <br>
-    <textarea cols="60" id="doi" name="doi" rows="5"></textarea>
-    <br>
-    <label for="style">Style</label>
-    <select id="style" name="style">
-        {% for style in styles %}
-        <option value="{{ style.name }}">{{ style.name }}</option>
-        {% endfor %}
-    </select>
-    <br>
-    <label for="locale">Locale</label>
-    <select id="locale" name="locale">
-        {% for locale in locales %}
-        <option value="{{ locale.name }}">{{ locale.name }}</option>
-        {% endfor %}
-    </select>
-    <br>
+    <div id="textarea-container">
+        <label for="doi" id="list-label">DOI list</label>
+        <textarea autofocus cols="60" id="doi" name="doi" rows="5"></textarea>
+    </div>
+    <div id="option-container">
+        <div id="label-container">
+            <label for="style">Style</label>
+            <label for="locale">Locale</label>
+        </div>
+        <div id="select-container">
+            <select id="style" name="style">
+                {% for style in styles %}
+                <option value="{{ style.name }}">{{ style.name }}</option>
+                {% endfor %}
+            </select>
+            <select id="locale" name="locale">
+                {% for locale in locales %}
+                <option value="{{ locale.name }}">{{ locale.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
     <input type="submit" value="Create list"/>
 </form>
 </body>
